@@ -5,3 +5,9 @@ canvas {
     background-color: #C6B497;
     width: 100%;
 }
+
+textarea {
+    display: inline-block;
+    width: 40%;
+    height: 300px;
+}
