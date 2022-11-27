@@ -1,8 +1,10 @@
 var canvas = document.getElementById('stage');
 var stage = canvas.getContext('2d');
-
+var startFlag = true
 
 // stage.fillRect(0,0,400,180)
+
+
 
 function circle(x,y, size, color) {
     stage.fillStyle = color
@@ -130,6 +132,14 @@ function touch(a, b) {
     return Math.abs(a.x - b.x)**2 + Math.abs(a.y - b.y)** 2 < 4900 // 75**2
 }
 
+function apply() {
+    left_program = document.getElementById('left');
+    right_program = document.getElementById('right');
+    left.program = left_program.value != "" ? Function(left_program.value) : left.program;
+    right.program = right_program.value != "" ? Function(right_program.value) : right.program;
+    alert("program updated");
+}
+
 function turn() {
     // 初期化
     stage.clearRect(0, 0, 2000, 1000);
@@ -160,10 +170,20 @@ function turn() {
     }
 }
 
-document.onmousemove = position;
- function position(e) {
-    right.x = e.pageX;
-    right.y = e.pageY;
- }
+function start() {
+    if (startFlag) {
+        main = setInterval(turn, 1);
+        startFlag = false
+    }
+}
 
-setInterval(turn,1);
+function stop() {
+    clearInterval(main);
+    startFlag = true
+}
+
+// document.onmousemove = position;
+//  function position(e) {
+//     right.x = e.pageX;
+//     right.y = e.pageY;
+//  }
